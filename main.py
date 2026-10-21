@@ -1,15 +1,40 @@
 import argparse
 from pathlib import Path
-
+import csv
+import random
 
 def zapisz_csv(katalog):
-    # TODO
-    pass
+    sciezka_pliku = katalog / "Dane.csv"
 
+    model = random.choice(["A", "B", "C"])
+    wynik = random.randint(0, 1000)
+    czas = random.randint(0, 1000)
+
+    with open(sciezka_pliku, "w", newline="", encoding="utf-8") as plik:
+        writer = csv.writer(
+            plik,
+            delimiter=";",
+            lineterminator="\n"
+        )
+
+        writer.writerow(["Model", " Wynik", " Czas", ""])
+        writer.writerow([f"{model} ", f" {wynik} ", f" {czas}s", ""])
 
 def odczytaj_csv(sciezka_pliku):
-    # TODO
+    with open(sciezka_pliku, "r", newline="", encoding="utf-8") as plik:
+        reader = csv.reader(plik, delimiter=";")
+
+        next(reader)
+        wiersz = next(reader)
+
+    if wiersz[0].strip() == "A":
+        czas_tekst = wiersz[2].strip()
+        czas_tekst = czas_tekst.removesuffix("s")
+
+        return int(czas_tekst)
+
     return 0
+
 
 
 def zapisz_json(katalog):

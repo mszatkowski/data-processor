@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import csv
 import random
+import json
 
 def zapisz_csv(katalog):
     sciezka_pliku = katalog / "Dane.csv"
@@ -38,13 +39,26 @@ def odczytaj_csv(sciezka_pliku):
 
 
 def zapisz_json(katalog):
-    # TODO
-    pass
+    sciezka_pliku = katalog / "Dane.json"
+    model = random.choice(["A", "B", "C"])
+    wynik = random.randint(0, 1000)
+    czas = random.randint(0, 1000)
+    dane = {"model": model, "wynik": wynik, "czas": czas}
+
+    with open(sciezka_pliku, "w", newline="",encoding="utf-8") as plik:
+        json.dump(dane, plik)
 
 
 def odczytaj_json(sciezka_pliku):
-    # TODO
-    return 0
+    with open(sciezka_pliku, "r", encoding="utf-8") as plik:
+        odczyt = json.load(plik)
+
+        if odczyt["model"] == "A":
+            return odczyt["czas"]
+        else: 
+            return 0
+
+    
 
 
 def rozwin_dni(zakres):

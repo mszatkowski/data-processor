@@ -43,7 +43,7 @@ def zapisz_json(katalog):
     model = random.choice(["A", "B", "C"])
     wynik = random.randint(0, 1000)
     czas = random.randint(0, 1000)
-    dane = {"model": model, "wynik": wynik, "czas": czas}
+    dane = {"Model": model, "Wynik": wynik, "Czas": czas}
 
     with open(sciezka_pliku, "w", newline="",encoding="utf-8") as plik:
         json.dump(dane, plik)
@@ -53,8 +53,8 @@ def odczytaj_json(sciezka_pliku):
     with open(sciezka_pliku, "r", encoding="utf-8") as plik:
         odczyt = json.load(plik)
 
-        if odczyt["model"] == "A":
-            return odczyt["czas"]
+        if odczyt["Model"] == "A":
+            return odczyt["Czas"]
         else: 
             return 0
 

@@ -98,7 +98,7 @@ def generuj_sciezki(miesiace, zakresy_dni, pory):
 
     for miesiac, dni in zip(miesiace, dni_w_miesiacach):
         for dzien in dni:
-            pora = "wieczorem" if pora_idx < len(pory) and pory[pora_idx] == "w" else "rano"
+            pora = "wieczór" if pora_idx < len(pory) and pory[pora_idx] == "w" else "rano"
             sciezki.append(Path(miesiac) / dzien / pora)
             pora_idx += 1
 
@@ -126,7 +126,7 @@ def parsuj_argumenty():
         "-p", "--pory",
         nargs="*",
         default=[],
-        help="Pory dnia: r (rano) lub w (wieczorem). Domyślnie rano",
+        help="Pory dnia: r (rano) lub w (wieczór). Domyślnie rano",
     )
     parser.add_argument(
         "-t", "--tworz",
